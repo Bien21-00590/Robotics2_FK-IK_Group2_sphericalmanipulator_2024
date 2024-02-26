@@ -6,7 +6,7 @@ Members:
 
 PL : Perilla, Aira A.
 
-PE : 
+PE : Capuno, Raphael Juno L.
 
 PS : Arnante, Juan Bienvinido P.
 
