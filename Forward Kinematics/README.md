@@ -5,3 +5,6 @@
 
 
 ![429577210_710091254484306_1766862315524667420_n](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_sphericalmanipulator_2024/assets/157706256/8ae36530-4689-49ac-a97a-40fe5780dd20)
+
+
+## Spherical Manipulator DH Parametric Table
