@@ -1,4 +1,4 @@
-#Group2_ Spherical
+# Group 2 Spherical Manipulator
 
 Members:
 
