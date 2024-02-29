@@ -1,6 +1,4 @@
-# Robotics2_FK-IK_Group2_SphericalManipulator_2024
-
-Group#2_ Spherical
+#Group2_ Spherical
 
 Members:
 
