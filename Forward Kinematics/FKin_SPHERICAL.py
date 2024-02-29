@@ -5,7 +5,6 @@ import math
 a1 = float(input("a1 = "))
 a2 = float(input("a2 = "))
 a3 = float(input("a3 = "))
-a4 = float(input("a4 = "))
 
 # joint variables: is mm if f, is degrees if theta
 T1 = float(input("T1 = ")) #20 mm
