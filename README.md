@@ -16,4 +16,4 @@ PR : Tolentino, Gian Carl C.
 
 Spherical Manipulator Kinematic Diagram 
 
-![429765888_941421657046812_3520687979686458921_n](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_sphericalmanipulator_2024/assets/157706256/26870e85-c977-4b33-afe5-3f581c1d60f1)
+![429765888_941421657046812_3520687979686458921_n](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_sphericalmanipulator_2024/assets/157706256/f0f506c2-3c9f-4ee6-84fb-ae917faa19ef)
