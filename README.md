@@ -1,6 +1,6 @@
 # Group 2 Spherical Manipulator
 
-Members:
+## Members:
 
 PL : Perilla, Aira A.
 
