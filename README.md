@@ -59,9 +59,9 @@ And thus, our Homogeneous Transformation Matrix is complete.
 
 Inverse Kinematics is the process of figuring out joint configurations that produce a desired end-effector position and orientation in robotics. It involves figuring out the joint angles needed to position the end-effector or a robot arm for example, at a particular spot and angle in space. However, inverse kinematics determines the end-effector's position based on joint angles, compared to forward kinematics' calculation procedure. It’s important to have the necessary calculations in tasks like motion planning where having the exact control over the orientation and location of the end-effector is required.
 These are the required elements to be able to calculate the inverse kinematics of spherical manipulator:
-•	Link lengths.
-•	Joint variables
-•	Kinematic diagram
-•	Pythagorean theorem equations
-•	Inverse kinematic solver (GUI interface)
+ - Link lengths.
+ - Joint variables
+ - Kinematic diagram
+ - Pythagorean theorem equations
+ - Inverse kinematic solver (GUI interface)
 
