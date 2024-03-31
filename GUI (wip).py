@@ -1,3 +1,4 @@
+import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 from tkinter import PhotoImage
@@ -8,15 +9,23 @@ from roboticstoolbox import DHRobot, RevoluteDH, PrismaticDH
 import spatialmath 
 from spatialmath import SE3
 import matplotlib
+from PIL import Image
+from tkinter import font as tkFont
+
+
+
 
 #-----------------------------------------------------------------#
 
 ## Create GUI with title
 
+
 mygui = Tk()
 mygui.title("Spherical Manipulator Calculator")
 mygui.resizable(True,True) ## (width, height)
-mygui.configure(bg ="purple")
+mygui.configure(bg ="darkgray")
+
+
 
 ## reset functions
 def reset():
@@ -117,73 +126,79 @@ def i_k():
 
     ## INVERSE KINEMATICS SOLUTION USING GRAPHICAL METHOD
 
-    T1 = np.arctan(y0_3 / x0_3)
+    if x0_3 == 0:
+        warning()
+    else:
+        
+        T1 = np.arctan(y0_3 / x0_3)
 
-    r1 = np.sqrt(x0_3**2 + y0_3**2)
+        r1 = np.sqrt(x0_3**2 + y0_3**2)
 
-    r2 = z0_3 - a1
+        r2 = z0_3 - a1
 
-    T2 = np.arctan(r2 / r1)
+        T2 = np.arctan(r2 / r1)
 
-    d3 = np.sqrt(r1**2 + r2**2) - a2 - a3
+        d3 = np.sqrt(r1**2 + r2**2) - a2 - a3
 
    
-    T1 = T1*(180/np.pi)
-    T1_E.delete(0,END)
-    T1_E.insert(0,T1)
+        T1 = T1*(180/np.pi)
+        T1_E.delete(0,END)
+        T1_E.insert(0,T1)
 
-    T2 = T2*(180/np.pi)
-    T2_E.delete(0,END)
-    T2_E.insert(0,T2)
+        T2 = T2*(180/np.pi)
+        T2_E.delete(0,END)
+        T2_E.insert(0,T2)
 
-    d3_E.delete(0,END)
-    d3_E.insert(0,d3)
-
-##-----------------------------------------------------------------##
-
-
-
-
-
-
-
-
-
+        d3_E.delete(0,END)
+        d3_E.insert(0,d3)
 
 
 ##-----------------------------------------------------------------##
-    
-## MAIN GRAPHICAL USER INTERPHASE (GUI)
+
+def warning(): 
+    messagebox.showinfo("Warning!","You cannot Divive by 0")
+    condition = True
+
+
+##---------------------------------------------------------------------------------------------------------------------------------------##
+
+titlefont = tkFont.Font(family = "Roman", weight = "bold", slant="italic", size=12)
+
+
+## MAIN GRAPHICAL USER INTERFACE (GUI)
+
+
+
 
 ## link lenghts and joint variable
     
-FI = LabelFrame(mygui,text = "Link frames and Joint Variables", font=(5))
+FI = LabelFrame(mygui,text = "Link frames and Joint Variables", font=titlefont ,bg="white", padx=5, pady= 5, border=10, borderwidth=10, relief="groove", labelanchor="n")
 FI.grid(row = 0 , column = 0)
 
 #link lenghts and joint variable
-a1 = Label(FI,text=("a1 = "), font=(10),bg="white")## fg = "--" for text color
+a1 = Label(FI,text=("a1 = "), font=(10),bg="white", padx=5)## fg = "--" for text color
 a1_E = Entry(FI, width=5, font=10)
-cm1 = Label(FI,text=("cm"), font=(10),bg="white")   
+cm1 = Label(FI,text=("cm"), font=(10),bg="white", padx=5)
 
-a2 = Label(FI,text=("a2 = "), font=(10),bg="white")
+a2 = Label(FI,text=("a2 = "), font=(10),bg="white", padx=5)
 a2_E = Entry(FI, width=5, font=10)
-cm2 = Label(FI,text=("cm"), font=(10),bg="white") 
+cm2 = Label(FI,text=("cm"), font=(10),bg="white", padx=5)
 
-a3 = Label(FI,text=("a3 = "), font=(10),bg="white")
+a3 = Label(FI,text=("a3 = "), font=(10),bg="white", padx=5)
 a3_E = Entry(FI, width=5, font=10)
-cm3 = Label(FI,text=("cm"), font=(10),bg="white") 
+cm3 = Label(FI,text=("cm"), font=(10),bg="white", padx=5) 
 
-T1 = Label(FI,text=("θ1 = "), font=(10),bg="white")
+T1 = Label(FI,text=("θ1 = "), font=(10),bg="white", padx=5)
 T1_E = Entry(FI, width=5, font=10)
-deg1 = Label(FI,text=("deg"), font=(10),bg="white") 
+deg1 = Label(FI,text=("deg"), font=(10),bg="white", padx=5)
 
-T2 = Label(FI,text=("θ2 = "), font=(10),bg="white")
+T2 = Label(FI,text=("θ2 = "), font=(10),bg="white", padx=5)
 T2_E = Entry(FI, width=5, font=10)
-deg2 = Label(FI,text=("deg"), font=(10),bg="white") 
+deg2 = Label(FI,text=("deg"), font=(10),bg="white", padx=5)
 
-d3 = Label(FI,text=("d3 = "), font=(10),bg="white")
+d3 = Label(FI,text=("d3 = "), font=(10),bg="white", padx=5)
 d3_E = Entry(FI, width=5, font=10)
-cm5 = Label(FI,text=("cm"), font=(10),bg="white") 
+cm5 = Label(FI,text=("cm"), font=(10),bg="white", padx=5)
 
 
 
@@ -215,52 +230,60 @@ cm5.grid(row=2,column=5)
 
 ## Button frame (forward/reset/inverse)
 
-BF = LabelFrame(mygui,text = "Forward and Inverse", font=(5))
+BF = LabelFrame(mygui,text = "Forward and Inverse",font=titlefont ,bg="white", padx=5, pady= 5, border=10, borderwidth=10, relief="groove", labelanchor="n")
 BF.grid(row = 1 , column = 0)
 
 # Buttons
 
-FK = Button(BF, text = "Forward ↓", font = 10, bg = "blue", command=f_k)
-RST = Button(BF, text = "Reset ↕", font = 10, bg = "green", command=reset)
-IK = Button(BF, text = "Inverse ↑", font = 10, bg = "red", command=i_k)
+FK = Button(BF, text = "Forward ↓", font = 10, bg = "white", command=f_k, padx=5, pady=5, highlightthickness=5,highlightbackground="#ff0000")
+RST = Button(BF, text = "Reset ↕", font = 10, bg = "white", command=reset, padx=5, pady=5, highlightthickness=5,highlightbackground="#00ff00")
+IK = Button(BF, text = "Inverse ↑", font = 10, bg = "white" , command=i_k, padx=5, pady=5, highlightthickness=5,highlightbackground="#0000ff")
 
-FK.grid(row=0,column=0)
-RST.grid(row=0,column=1)
-IK.grid(row=0,column=2)
+
+
+
+
+
+
+FK.pack(side = LEFT , padx=1)
+RST.pack(side=LEFT, padx=1)
+IK.pack(side=LEFT , padx=1)
 
 ## position vector
 
-PV = LabelFrame(mygui,text = "Position Vector", font=(5))
+PV = LabelFrame(mygui,text ="Position Vector",font=titlefont ,bg="white", padx=5, pady= 5, border=10, borderwidth=10, relief="groove", labelanchor="n")
 PV.grid(row =2 , column = 0)
 
 
-X = Label(PV,text=("X = "), font=(10),bg="white")## fg = "--" for text color
+X = Label(PV,text=("X = "), font=(10),bg="gray", )## fg = "--" for text color
 X_E = Entry(PV, width=5, font=10)
-cm6 = Label(PV,text=("cm"), font=(10),bg="white")   
+cm6 = Label(PV,text=("cm"), font=(10),bg="gray")   
 
-Y = Label(PV,text=("Y = "), font=(10),bg="white")
+Y = Label(PV,text=("Y = "), font=(10),bg="gray")
 Y_E = Entry(PV, width=5, font=10)
-cm7 = Label(PV,text=("cm"), font=(10),bg="white") 
+cm7 = Label(PV,text=("cm"), font=(10),bg="gray") 
 
-Z = Label(PV,text=("Z = "), font=(10),bg="white")
+Z = Label(PV,text=("Z = "), font=(10),bg="gray")
 Z_E = Entry(PV, width=5, font=10)
-cm8 = Label(PV,text=("cm"), font=(10),bg="white") 
+cm8 = Label(PV,text=("cm"), font=(10),bg="gray") 
 
 
 
-X.grid(row=0,column=0)
-X_E.grid(row=0,column=1)
-cm6.grid(row=0,column=2)
+X.grid(row=0,column=0, padx=3, ipadx=5)
+X_E.grid(row=0,column=1, padx=3, ipadx=5)
+cm6.grid(row=0,column=2, padx=3, ipadx=5)
 
-Y.grid(row=1,column=0)
-Y_E.grid(row=1,column=1)
-cm7.grid(row=1,column=2)
+Y.grid(row=1,column=0, padx=3, ipadx=5)
+Y_E.grid(row=1,column=1, padx=3, ipadx=5)
+cm7.grid(row=1,column=2, padx=3, ipadx=5)
 
-Z.grid(row=2,column=0)
-Z_E.grid(row=2,column=1)
-cm8.grid(row=2,column=2)
+Z.grid(row=2,column=0, padx=3, ipadx=5)
+Z_E.grid(row=2,column=1,padx=3, ipadx=5)
+cm8.grid(row=2,column=2, padx=3, ipadx=5)
 
 ##-----------------------------------------------------------------##
+
+
 
 mygui.mainloop() ## always at last
 
