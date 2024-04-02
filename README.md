@@ -53,7 +53,7 @@ After getting the HTMs from frame 0 to frame 3, the next step would be to multip
 
 [Insert H03]
 
-Now that we have the final HTM, we should be all set for the Forward Kinematics of our Spherical Manipulator.
+Now that we have the final HTM, needs for the Forward Kinematics of our Spherical Manipulator has been obtained.
 
 ## Inverse Kinematics
 
