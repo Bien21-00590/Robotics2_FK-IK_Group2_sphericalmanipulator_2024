@@ -1,4 +1,4 @@
-# Forward and Inverse Kinematics of a Spherica Manipulator
+# Forward and Inverse Kinematics of a Spherical Manipulator
 ### Members:
 - PL :
 - PE : Capuno, Raphael Juno L.
@@ -41,19 +41,19 @@ Now that we have resolved the issue and made it through all the Rules, the appli
 
 ## Homogeneous Transformation Matrix
 
-The Homogeneous Transformation Matrix is an essential part of this project as this would be the next step after making our Kinematic Diagram but before we can make the Homogeneous transformation matrix, we must first get the Rotation matrix which helps us indicate the rotational movement of a manipulator in the form of a 3 by 3 matrix that consists of the relative rotations between frames and another essential part of the Homogeneous Transformation Matrix is the Position Vector which then indicates the displacement of the manipulator in the form of a 1 by 3 matrix that consists of its X, Y, and Z positions. In the flowing solutions, we will get the Rotation matrix of the Spherical manipulator.
+The Homogeneous Transformation Matrix (HTM) is an essential part of this project as this would be the next step after making our Kinematic Diagram. There are two ways of getting the HTM wherein one would be to get the rotation matrixes and the position vectors of each frame with its reference or the more efficient way would be to utilize the DH parametric table that has been made and for the sake of efficiency, the latter will be used. There is a standard for making the HTM such as labeling the HTM. HTMs have superscripts that mean their current frame and subscripts that mean their reference frame and it is as follows:
 
-[Insert Rotation Matrix process]
+[Insert HTM template]
 
-After these solutions, we will then get the Position vector of the Spherical Manipulator which is shown in the following solution.
+Following the standard and with substitution, the HTM should form as such:
 
-[Insert Position Vector process]
+[Insert H01, H12, H23]
 
-With this, we can now build our Homogeneous Transformation Matrix with the following process.
+After getting the HTMs from frame 0 to frame 3, the next step would be to multiply the HTMs altogether to get the combined HTMs that will be essential for the following sections of computation. The Final HTM is as such:
 
-[Insert HTM process and result in H0_3]
+[Insert H03]
 
-And thus, our Homogeneous Transformation Matrix is complete.
+Now that we have the final HTM, we should be all set for the Forward Kinematics of our Spherical Manipulator.
 
 ## Inverse Kinematics
 
