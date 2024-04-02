@@ -1,7 +1,7 @@
 # Forward and Inverse Kinematics of a Spherica Manipulator
 ### Members:
 - PL :
-- PE :
+- PE : Capuno, Raphael Juno L.
 - PS : Arnante, Juan Bienvinido P.
 - PQ : Almonte, Ray Ivan C.
 - PP :
