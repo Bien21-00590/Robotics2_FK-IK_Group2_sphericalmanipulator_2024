@@ -41,7 +41,19 @@ Now that we have resolved the issue and made it through all the Rules, the appli
 
 ## Homogeneous Transformation Matrix
 
-The Homogeneous Transformation Matrix (HTM) is an essential part of this project as this would be the next step after making our Kinematic Diagram. There are two ways of getting the HTM wherein one would be to get the rotation matrixes and the position vectors of each frame with its reference or the more efficient way would be to utilize the DH parametric table that has been made and for the sake of efficiency, the latter will be used. There is a standard for making the HTM such as labeling the HTM. HTMs have superscripts that mean their current frame and subscripts that mean their reference frame and it is as follows:
+The Homogeneous Transformation Matrix (HTM) is an essential part of this project because it is the proper combination of the rotation matrixes and position vectors of the Spherical manipulator. HTM describes the rotation and position of the manipulator and this would be the next step after making our Kinematic Diagram. There are two ways of getting the HTM wherein one would be to get the rotation matrixes and the position vectors of each frame with its reference or the more efficient way would be to utilize the DH parametric table that has been made. For the sake of efficiency, the latter will be used. There is a standard for making the HTM such as labeling the HTM. HTMs have superscripts that mean their current frame and subscripts that mean their reference frame and it is as follows:
+
+[Insert HTM template]
+
+Following the standard and with substitution, the HTM should form as such:
+
+[Insert H01, H12, H23]
+
+After getting the HTMs from frame 0 to frame 3, the next step would be to multiply the HTMs altogether to get the combined HTMs that will be essential for the following sections of computation. The Final HTM is as such:
+
+[Insert H03]
+
+Now that we have the final HTM, we should be all set for the Forward Kinematics of our Spherical Manipulator.
 
 [Insert HTM template]
 
