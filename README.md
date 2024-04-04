@@ -39,6 +39,17 @@ Note: Notice that here, we are unable to accomplish Rule No. 2 which is why we w
 
 Now that we have resolved the issue and made it through all the Rules, the application of the DH Frame Rules has been achieved and the Kinematic Diagram for the Spherical Manipulator is complete.
 
+## DH Parametric Table
+
+After the DH Frame Rules, we can now make what is called the DH Parametric table. The DH parametric table will help significantly in making our Homogeneous Transformation Matrix which will be explained later on. The DH parametric table has columns consisting of parameters and rows related to how many frames there are minus 1. The table will dictate the values of each Homogenous Transformation Matrix from the pair of frames up to the last. The DH Parametric table has a set of parameters that are to be met which are the following for each column:
+
+[Insert DH parameters]
+
+By following each of the DH Table parameters, we The DH Parametric table for the Spherical Manipulator will result in such:
+
+[Insert DH Parametric Table]
+
+
 ## Homogeneous Transformation Matrix
 
 The Homogeneous Transformation Matrix (HTM) is an essential part of this project because it is the proper combination of the rotation matrixes and position vectors of the Spherical manipulator. HTM describes the rotation and position of the manipulator and this would be the next step after making our Kinematic Diagram. There are two ways of getting the HTM wherein one would be to get the rotation matrixes and the position vectors of each frame with its reference or the more efficient way would be to utilize the DH parametric table that has been made. For the sake of efficiency, the latter will be used. There is a standard for making the HTM such as labeling the HTM. HTMs have superscripts that mean their current frame and subscripts that mean their reference frame and it is as follows:
