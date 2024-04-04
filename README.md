@@ -69,11 +69,16 @@ Now that we have the final HTM, needs for the Forward Kinematics of our Spherica
 
 ## Inverse Kinematics
 
-Inverse Kinematics is the process of figuring out joint configurations that produce a desired end-effector position and orientation in robotics. It involves figuring out the joint angles needed to position the end-effector or a robot arm for example, at a particular spot and angle in space. However, inverse kinematics determines the end-effector's position based on joint angles, compared to forward kinematics' calculation procedure. It is important to have the necessary calculations in tasks like motion planning where having the exact control over the orientation and location of the end-effector is required.
-These are the required elements to be able to calculate the inverse kinematics of spherical manipulator:
- - Link lengths.
+Inverse Kinematics is figuring out joint configurations that produce a desired end-effector position and orientation in robotics. It involves figuring out the joint angles needed to position the end-effector or a robot arm for example, at a particular spot and angle in space. However, inverse kinematics determines the end-effector's position based on joint angles, compared to forward kinematics' calculation procedure. It’s important to have the necessary calculations in tasks like motion planning where having the exact control over the orientation and location of the end-effector is required. For the sake of this project, the graphical method of obtaining the Inverse Kinematics will be used.
+ For the Graphical method and the calculation of the inverse kinematics of the Spherical Manipulator, the following will be needed:
+- Link lengths
  - Joint variables
+- Kinematic diagram
  - Pythagorean theorem equations
+
+[Insert Inverse kinematic solutions]
+
+A Python program is then made to get the Inverse Kinematics of the Spherical manipulator.
 
 ## Forward and Inverse Kinematics GUI Calculator
 
