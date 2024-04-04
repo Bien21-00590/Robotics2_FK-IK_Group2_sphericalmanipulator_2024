@@ -27,15 +27,23 @@ The Kinematic Diagram helps us isolate the parts of the manipulator so we can ha
 
 Applying these rules to our Spherical Manipulator, it should look like this:
 
-[Insert Rule 1 application to Spherical Manipulator]
+Rule 1 Application:
 
-[Insert Rule 2 application to Spherical Manipulator]
+![z1_1_Rule 1](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/c8becb02-3561-46be-b440-0aecfd97c59a)
+
+Rule 2 Application:
+![z1_2_Rule 2](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/f26e992f-d8a2-48ca-b7f0-106f0def36e6)
+
 
 Note: Notice that here, we are unable to accomplish Rule No. 2 which is why we will move to Rule No. 3 to fix this issue
 
-[Insert Rule 3 application to Spherical Manipulator]
+Rule 3 Application:
+![Rules_3_Rule 3](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/df83ff50-2921-4b74-bd2c-ed8fbe3066a6)
 
-[Insert Rule 4 application to Spherical Manipulator]
+
+Rule 4 Application:
+![Rules_4_Rule 4](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/4f5b0950-0bf1-4fb4-9b57-e2ec77c9bb9f)
+
 
 Now that we have resolved the issue and made it through all the Rules, the application of the DH Frame Rules has been achieved and the Kinematic Diagram for the Spherical Manipulator is complete.
 
