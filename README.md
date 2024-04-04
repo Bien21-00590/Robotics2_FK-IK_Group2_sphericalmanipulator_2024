@@ -77,3 +77,13 @@ These are the required elements to be able to calculate the inverse kinematics o
  - Pythagorean theorem equations
  - Inverse kinematic solver (GUI interface)
 
+## Forward and Inverse Kinematics GUI Calculator
+
+This midterm project is directed toward a calculator with a user interface that has features connected to the Forward and Inverse kinematics of the Spherical Manipulator of this project. As such, this program was made with the Python programming language and has several things that are important to note for information essential to understanding how the program works. With that stated, here are a few things to know about the code to better understand it.
+
+[Insert Libraries used and each library containment]
+
+Features of the GUI include: 
+[Insert the GUI features]
+
+
