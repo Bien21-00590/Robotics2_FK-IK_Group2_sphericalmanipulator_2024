@@ -26,6 +26,8 @@ Since the project’s focus is the Spherical Manipulator, we use Grubler’s Cri
 
 This gives us the conclusion that therfore, our Spherical Manipulator has 3 Degrees of Freedom and is an Under-Actuated Spatial Manipulator
 
+**Task 1: _https://www.youtube.com/watch?v=7Wote3dLhIo_**
+
 ## Kinematic Diagram
 
 _**Kinematics**_ is the study or the science of a system’s motion with disregard to other forces that may affect it and this becomes easier to figure out when we use a kinematic diagram. _**Kinematic diagrams**_ give a view of the manipulator with its joints and links connected when their values are set to 0 or when their values are variables. In the case of the Spherical Manipulator, its kinematic diagram looks like this:
@@ -73,6 +75,8 @@ _**Rule 4 Application**_:
 
 Now that we have resolved the issue and made it through all the Rules, the application of the DH Frame Rules has been achieved and the Kinematic Diagram for the Spherical Manipulator is complete.
 
+**Task 2: _https://www.youtube.com/watch?v=1jrk-Gd2Wxw_**
+
 ## DH Parametric Table
 
 After the DH Frame Rules, we can now make what is called the DH Parametric table. _**The DH Parametric Table**_ will help significantly in making our _**Homogeneous Transformation Matrix**_ which will be explained later on. The DH parametric table has columns consisting of parameters and rows related to how many frames there are minus 1. The table will dictate the values of each Homogenous Transformation Matrix from the pair of frames up to the last. The DH Parametric table has a set of parameters that are to be met which are the following for each column:
@@ -84,6 +88,7 @@ By following each of the DH Table parameters, we The DH Parametric table for the
 
 ![Parametric Table](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/5132017b-3ac5-4673-99ca-d1b9bb99e2de)
 
+**Task 3: _https://www.youtube.com/watch?v=dB-hn7chtFY_**
 
 ## Homogeneous Transformation Matrix
 
@@ -108,6 +113,7 @@ After getting the HTMs from frame 0 to frame 3, the next step would be to multip
 
 Now that we have the final HTM, we should be all set for the Forward Kinematics of our Spherical Manipulator.
 
+**Task 4: _https://www.youtube.com/watch?v=jF_PMRMLhMo_**
 
 ## Inverse Kinematics
 
@@ -122,6 +128,7 @@ The following equations were derived as a result from the Graphical method and w
 
 ![Inverse Kinematics](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/70a5d21a-a7f1-47ab-b4f1-467eb312ac9a)
 
+**Task 5: _https://www.youtube.com/watch?v=sBe8PmGDW4g_**
 
 ## Forward and Inverse Kinematics GUI Calculator
 
@@ -159,5 +166,6 @@ And Lastly, Prevent Error Calculations:
 
 ![Error Notif](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/5029bda5-2a39-45f6-bbe6-4a28348a39b0)
 
+**Task 6: _GUI code python file located in Repository_**
 
 And with that, the Midterm project has been concluded. The GUI Calculator has been made in a through and through process with the desired features achieved and with the desired output met. This project has be a surreal experience and we as a group would hope that this will be able to help future viewers in their respective agendas.
