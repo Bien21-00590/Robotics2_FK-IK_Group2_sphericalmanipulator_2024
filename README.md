@@ -4,9 +4,11 @@
 - PE : Capuno, Raphael Juno L.
 - PS : Arnante, Juan Bienvinido P.
 - PQ : Almonte, Ray Ivan C.
-- PP :
+- PR :
 
 ##  Abstract of the Project
+
+The project aimed to create a GUI calculator that is able to solve both Forward and Inverse Kinematics of the Spherical Manipulator. Several discussions and topics were covered which were essential information to have for the creation of the calculator and its functions. Topics such as the Homogeneous Transformation Matrix and Inverse Kinematics with the usage of Graphical Method to obtain the equations necessary. Ultimately, the creation of the GUI Calculator with its desired outputs and conditions were made properly. 
 
 ## Introduction
 In the times of today, modernized industries have utilized the usage of robots to achieve tasks at a certain and desired efficiency for the sake of various aspects such as mass production or quality assurance but ultimately leads to product fabrications. Robots of today have many applications for a variety of tasks, however, certain robots can only do certain tasks and for this project, **The Spherical Manipulator** or Robot will be the main focus. _**The Spherical Manipulator**_ is a manipulator that is made up of two rotary and one prismatic joint and, from the name itself, uses its links to perform spherical motions from a stationary position or fixed standpoint. To analyze the movement of the said manipulator, we use kinematic equations which have two different approaches. The two different approaches are Forward Kinematics and Inverse Kinematics which are tackled in depth in the Forward and Inverse Kinematics section.
@@ -31,7 +33,7 @@ _**Kinematics**_ is the study or the science of a system’s motion with disrega
 ![Spherical Manipulator](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/77f46ee7-4a8b-4d90-9df6-e365b466135b)
 
 
-## DH Frame Assignment
+## DH Frame Rules
 
 _**The Kinematic Diagram**_ helps us isolate the parts of the manipulator so we can have a better view of its general structure but it is incomplete. To complete this, we use the _**Denavit-Hartenberg Notation**_ which is used to analyze and design the manipulator and is used to solve for the _**Forward Kinematics. We will also need to assign the Frames, which in this case is a coordinate system that the manipulator needs to keep track of its supposed location and action. After assigning frames to the manipulator, we then follow the DH (Denavit-Hartenberg) Frame rules which are as follows:
 
@@ -123,11 +125,39 @@ The following equations were derived as a result from the Graphical method and w
 
 ## Forward and Inverse Kinematics GUI Calculator
 
-This midterm project is directed toward a calculator with a user interface that has features connected to the Forward and Inverse kinematics of the Spherical Manipulator of this project. As such, this program was made with the Python programming language and has several things that are important to note for information essential to understanding how the program works. With that stated, here are a few things to know about the code to better understand it.
-
-[Insert Libraries used and each library containment]
-
-Features of the GUI include: 
-[Insert the GUI features]
+This midterm project is directed toward a calculator with a user interface that has features connected to the Forward and Inverse kinematics of the Spherical Manipulator of this project. As such, this program was made with the Python programming language and has several things that are important to note for information essential to understanding how the program works. With that stated, here are a few things to know about the code to better understand it.The following are the libraries used to execute the GUI Calculator:
 
 
+
+- _**numpy**_ - used to solve equations with trigonometric functions and other mathematical uses like rounding off values.
+- _**math**_ - provides access to mathematical functions and constants for different mathematical  equations like matrix etc..
+- _**tkinter**_ - used to make the main graphical user interface for the GUI Calculator of this Midterm Project
+- _**roboticstoolbox**_ - it is used to compute and provide the model for making different mechanical manipulators. For this project  
+- _**spatialmath**_ - offers functionality for carrying out mathematical operations connected to kinematics, robotics, and spatial transformations. It is mostly used to represent and manipulate spatial transformations like rotations and translations in robotics and computer graphics applications.
+- _**matplotlib**_ - used with Python to create interactive, animated, and static visualizations. With the help of its extensive plotting capabilities, you can create excellent charts, graphs, scatter plots, histograms, and more.
+
+The GUI calculator:
+
+![GUI Calclator Inital](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/714081c7-72ce-406f-ab53-4652b1239154)
+
+
+The following are features of the GUI which are being able to: 
+
+Compute for the Forward and Inverse Kinematics of the Spherical Manipulator:
+
+![433708917_354385807007721_5159754422745798386_n](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/c4903498-5b85-4030-b96c-a54db16b5718)
+
+Show what the Spherical Manipulator would look given certain Parameters:
+
+![435167881_313580954813160_411379155001636854_n](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/8b4f86e0-a583-48f0-a27b-00f65bf58c3c)
+
+Show the completed Kinematic Diagram for additional information:
+
+![Kinematic Diagram GUI](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/637eac0e-c17b-4024-8574-20fdce0126cf)
+
+And Lastly, Prevent Error Calculations:
+
+![Error Notif](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/5029bda5-2a39-45f6-bbe6-4a28348a39b0)
+
+
+And with that, the Midterm project has been concluded. The GUI Calculator has been made in a through and through process with the desired features achieved and with the desired output met. This project has be a surreal experience and we as a group would hope that this will be able to help future viewers in their respective agendas.
