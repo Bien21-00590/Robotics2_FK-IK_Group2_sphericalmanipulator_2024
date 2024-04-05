@@ -1,10 +1,10 @@
 # Forward and Inverse Kinematics of a Spherical Manipulator
 ### Members:
-- PL :
+- PL : Perilla, Aira A.
 - PE : Capuno, Raphael Juno L.
 - PS : Arnante, Juan Bienvinido P.
 - PQ : Almonte, Ray Ivan C.
-- PR :
+- PR : Tolentino, Gian Carl C.
 
 ##  Abstract of the Project
 
