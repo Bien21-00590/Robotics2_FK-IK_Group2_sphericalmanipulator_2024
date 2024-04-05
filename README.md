@@ -18,17 +18,24 @@ The _**Degrees of Freedom**_ refer to a system’s flexibility which in other wo
 [insert formula]. 
 
 Since the project’s focus is the Spherical Manipulator, we use Grubler’s Criterion for Spatial Manipulators and solve it as follows: 
-[Insert Computation]
+
+![DOF Computation](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/fefa867e-e71d-4bac-bca9-64932f16e2c9)
+
 
 This gives us the conclusion that therfore, our Spherical Manipulator has 3 Degrees of Freedom and is an Under-Actuated Spatial Manipulator
 
 ## Kinematic Diagram
 
-_**Kinematics**_ is the study or the science of a system’s motion with disregard to other forces that may affect it and this becomes easier to figure out when we use a kinematic diagram. _**Kinematic diagrams give a view of the manipulator with its joints and links connected when their values are set to 0 or when their values are variables. In the case of the Spherical Manipulator, its kinematic diagram looks like this: [insert kinematic diagram]
+_**Kinematics**_ is the study or the science of a system’s motion with disregard to other forces that may affect it and this becomes easier to figure out when we use a kinematic diagram. _**Kinematic diagrams give a view of the manipulator with its joints and links connected when their values are set to 0 or when their values are variables. In the case of the Spherical Manipulator, its kinematic diagram looks like this:
+
+![Spherical Manipulator](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/77f46ee7-4a8b-4d90-9df6-e365b466135b)
+
 
 ## DH Frame Assignment
 
-_**The Kinematic Diagram**_ helps us isolate the parts of the manipulator so we can have a better view of its general structure but it is incomplete. To complete this, we use the _**Denavit-Hartenberg Notation**_ which is used to analyze and design the manipulator and is used to solve for the _**Forward Kinematics. We will also need to assign the Frames, which in this case is a coordinate system that the manipulator needs to keep track of its supposed location and action. After assigning frames to the manipulator, we then follow the DH (Denavit-Hartenberg) Frame rules which are as follows: [Insert DH Frame Rules]
+_**The Kinematic Diagram**_ helps us isolate the parts of the manipulator so we can have a better view of its general structure but it is incomplete. To complete this, we use the _**Denavit-Hartenberg Notation**_ which is used to analyze and design the manipulator and is used to solve for the _**Forward Kinematics. We will also need to assign the Frames, which in this case is a coordinate system that the manipulator needs to keep track of its supposed location and action. After assigning frames to the manipulator, we then follow the DH (Denavit-Hartenberg) Frame rules which are as follows:
+
+[Insert DH Frame Rules]
 
 Applying these rules to our Spherical Manipulator, it should look like this:
 
@@ -56,40 +63,37 @@ Now that we have resolved the issue and made it through all the Rules, the appli
 
 After the DH Frame Rules, we can now make what is called the DH Parametric table. _**The DH Parametric Table**_ will help significantly in making our _**Homogeneous Transformation Matrix**_ which will be explained later on. The DH parametric table has columns consisting of parameters and rows related to how many frames there are minus 1. The table will dictate the values of each Homogenous Transformation Matrix from the pair of frames up to the last. The DH Parametric table has a set of parameters that are to be met which are the following for each column:
 
-[Insert DH parameters]
+![DH Parameters](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/0096a411-165e-41fa-9d87-ab650cfc3c8f)
+
 
 By following each of the DH Table parameters, we The DH Parametric table for the Spherical Manipulator will result in such:
 
-[Insert DH Parametric Table]
+![Parametric Table](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/5132017b-3ac5-4673-99ca-d1b9bb99e2de)
 
 
 ## Homogeneous Transformation Matrix
 
 _**The Homogeneous Transformation Matrix**_ (HTM) is an essential part of this project because it is the proper combination of the rotation matrixes and position vectors of the Spherical manipulator. HTM describes the rotation and position of the manipulator and this would be the next step after making our Kinematic Diagram. There are two ways of getting the HTM wherein one would be to get the rotation matrixes and the position vectors of each frame with its reference or the more efficient way would be to utilize the DH parametric table that has been made. For the sake of efficiency, the latter will be used. There is a standard for making the HTM such as labeling the HTM. HTMs have superscripts that mean their current frame and subscripts that mean their reference frame and it is as follows:
 
-[Insert HTM template]
+![HTM Template](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/806c5480-e0f4-4e44-94a5-649b98538668)
+
+![HTM Template 2](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/52e2dacf-9458-40e6-89d5-3febf58736aa)
 
 Following the standard and with substitution, the HTM should form as such:
 
-[Insert H01, H12, H23]
+![HTM H01](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/8d17f52c-8bb4-4f34-9c8b-3efadb73e1dc)
+
+![HTM H12](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/ee181190-f801-4d21-b60f-985bba03802f)
+
+![HTM H23](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/c8209179-8798-4ec4-83c0-a97c3e5c5939)
 
 After getting the HTMs from frame 0 to frame 3, the next step would be to multiply the HTMs altogether to get the combined HTMs that will be essential for the following sections of computation. The Final HTM is as such:
 
-[Insert H03]
+![HTM H03](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/a5b32893-e06d-4fa8-ae14-b20c2c2be614)
+
 
 Now that we have the final HTM, we should be all set for the Forward Kinematics of our Spherical Manipulator.
 
-[Insert HTM template]
-
-Following the standard and with substitution, the HTM should form as such:
-
-[Insert H01, H12, H23]
-
-After getting the HTMs from frame 0 to frame 3, the next step would be to multiply the HTMs altogether to get the combined HTMs that will be essential for the following sections of computation. The Final HTM is as such:
-
-[Insert H03]
-
-Now that we have the final HTM, needs for the Forward Kinematics of our Spherical Manipulator has been obtained.
 
 ## Inverse Kinematics
 
@@ -100,9 +104,10 @@ _**Inverse Kinematics**_ is figuring out joint configurations that produce a des
  - Kinematic diagram
  - Pythagorean theorem equations
 
-[Insert Inverse kinematic solutions]
+The following equations were derived as a result from the Graphical method and will all be used in a Python Program to get the values necessary for the Inverse Kinematics of the Spherical Manipulator
 
-A Python program is then made to get the Inverse Kinematics of the Spherical manipulator.
+![Inverse Kinematics](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/70a5d21a-a7f1-47ab-b4f1-467eb312ac9a)
+
 
 ## Forward and Inverse Kinematics GUI Calculator
 
