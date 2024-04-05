@@ -35,7 +35,19 @@ _**Kinematics**_ is the study or the science of a system’s motion with disrega
 
 _**The Kinematic Diagram**_ helps us isolate the parts of the manipulator so we can have a better view of its general structure but it is incomplete. To complete this, we use the _**Denavit-Hartenberg Notation**_ which is used to analyze and design the manipulator and is used to solve for the _**Forward Kinematics. We will also need to assign the Frames, which in this case is a coordinate system that the manipulator needs to keep track of its supposed location and action. After assigning frames to the manipulator, we then follow the DH (Denavit-Hartenberg) Frame rules which are as follows:
 
-[Insert DH Frame Rules]
+_**DH Frame Rules**_:
+
+**Rule 1**: The Z axis must be the axis of rotation for a revolute/twisting, or the direction of translation for a prismatic joint.
+
+**Rule 2**: The X axis must be perpendicular both to its own Z axis, and the Z axis of the frame before it.
+
+**Rule 3**: Each X axis must intersect the Z axis of the frame before it.
+Rules for complying Rule 3:
+-	Rotate the axis until it hits the other.
+-	Or translate the axis until it hits the other
+
+**Rule 4**: All frames must follow the right-hand rule.
+
 
 Applying these rules to our Spherical Manipulator, it should look like this:
 
