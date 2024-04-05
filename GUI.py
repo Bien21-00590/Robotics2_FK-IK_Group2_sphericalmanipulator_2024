@@ -55,14 +55,14 @@ def warning():
 def f_k():
 
     # link lengths in mm
-    a1 = float(a1_E.get())/1000
-    a2 = float(a2_E.get())/1000
-    a3 = float(a3_E.get())/1000
+    a1 = float(a1_E.get())
+    a2 = float(a2_E.get())
+    a3 = float(a3_E.get())
 
     # joint variables: is mm if f, is degrees if theta
     T1 = float(T1_E.get()) #20 mm
     T2 = float(T2_E.get()) #30 deg
-    d3 = float(d3_E.get())/1000 #-90 deg
+    d3 = float(d3_E.get()) #-90 deg
 
     # degree to radian
     T1 = (T1/180.0)*np.pi
@@ -120,17 +120,17 @@ def f_k():
 ## Robot_variable = DHRobot([PrismaticDH(d=0,r,alpha,offset=d,qlim)])
 
     Spherical = DHRobot([
-    RevoluteDH(a1,0,(90/180)*np.pi,(0/180)*np.pi,qlim=[(-90/180)*np.pi/2,(90/180)*np.pi/2]),
+    RevoluteDH(a1/100,0,(90/180)*np.pi,(0/180)*np.pi,qlim=[(-90/180)*np.pi/2,(90/180)*np.pi/2]),
     RevoluteDH(0,0,(90/180)*np.pi,(90/180)*np.pi,qlim=[(-90/180)*np.pi/2,(90/180)*np.pi/2]),
-    PrismaticDH(0,0,(0/180)*np.pi,a3+a2,qlim=[0,d3_E.get()]),
+    PrismaticDH(0,0,(0/180)*np.pi,(a3+a2)/100,qlim=[0,10]),
     ], name="Spherical") 
 
 
-    q1 = np.array([T1, T2, d3])
+    q1 = np.array([T1, T2, d3/100])
 
     print(Spherical)
 
-    Spherical.plot(q1, limits=[0,0,0,0,0,.1],block=True,)
+    Spherical.plot(q1, limits=[-1,1,-1,1,0,1],block=True,)
 
 
 
@@ -143,9 +143,9 @@ def i_k():
     ### inverse kinematics - SPHERICAL
 
     # LINK LENGTHS
-    a1 = float(a1_E.get())/1000
-    a2 = float(a2_E.get())/1000
-    a3 = float(a3_E.get())/1000
+    a1 = float(a1_E.get())
+    a2 = float(a2_E.get())
+    a3 = float(a3_E.get())
 
     # JOINT VARIABLE
     x0_3 = float(X_E.get())
@@ -158,6 +158,8 @@ def i_k():
     if x0_3 == 0 and y0_3==0 or x0_3 == 0:
         warning()
 
+    T1 = np.arctan(y0_3 / x0_3)
+
     r1 = np.sqrt(x0_3**2 + y0_3**2)
 
     r2 = z0_3 - a1
@@ -166,17 +168,13 @@ def i_k():
 
 
     d3 = (np.sqrt(r1**2 + r2**2) - a2 - a3)
-    d3 = d3 /1000
+    
    
         ## convert radian to degrees
     TH1 = T1*(180/np.pi)
     TH2 = T2*(180/np.pi)
 
-
-
-
-
-        
+  
     T1_E.delete(0,END)
     T1_E.insert(0,np.around(TH1,3))
 
@@ -193,18 +191,19 @@ def i_k():
 ## Robot_variable = DHRobot([RevoluteDH(d,r,alpha,offset=theta,qlim)])
 ## Robot_variable = DHRobot([PrismaticDH(d=0,r,alpha,offset=d,qlim)])
 
+
     Spherical = DHRobot([
-    RevoluteDH(a1,0,(90/180)*np.pi,(0/180)*np.pi,qlim=[(-90/180)*np.pi/2,(90/180)*np.pi/2]),
+    RevoluteDH(a1/100,0,(90/180)*np.pi,(0/180)*np.pi,qlim=[(-90/180)*np.pi/2,(90/180)*np.pi/2]),
     RevoluteDH(0,0,(90/180)*np.pi,(90/180)*np.pi,qlim=[(-90/180)*np.pi/2,(90/180)*np.pi/2]),
-    PrismaticDH(0,0,(0/180)*np.pi,a3+a2,qlim=[0,d3_E.get()]),
+    PrismaticDH(0,0,(0/180)*np.pi,(a3+a2)/100,qlim=[0,10]),
     ], name="Spherical") 
 
 
-    q1 = np.array([T1, T2, d3])
+    q1 = np.array([T1, T2, d3/100])
 
     print(Spherical)
 
-    Spherical.plot(q1, limits=[0,0,0,0,0,.1],block=True,)
+    Spherical.plot(q1, limits=[-1,1,-1,1,0,1],block=True,)
 
 
 
