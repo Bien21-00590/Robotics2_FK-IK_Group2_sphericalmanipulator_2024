@@ -26,7 +26,7 @@ This gives us the conclusion that therfore, our Spherical Manipulator has 3 Degr
 
 ## Kinematic Diagram
 
-_**Kinematics**_ is the study or the science of a system’s motion with disregard to other forces that may affect it and this becomes easier to figure out when we use a kinematic diagram. _**Kinematic diagrams give a view of the manipulator with its joints and links connected when their values are set to 0 or when their values are variables. In the case of the Spherical Manipulator, its kinematic diagram looks like this:
+_**Kinematics**_ is the study or the science of a system’s motion with disregard to other forces that may affect it and this becomes easier to figure out when we use a kinematic diagram. _**Kinematic diagrams**_ give a view of the manipulator with its joints and links connected when their values are set to 0 or when their values are variables. In the case of the Spherical Manipulator, its kinematic diagram looks like this:
 
 ![Spherical Manipulator](https://github.com/Bien21-00590/Robotics2_FK-IK_Group2_SphericalManipulator_2024/assets/157681561/77f46ee7-4a8b-4d90-9df6-e365b466135b)
 
