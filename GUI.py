@@ -12,24 +12,22 @@ import matplotlib
 from PIL import ImageTk, Image
 from tkinter import font as tkFont
 
+##----------------------------------------------------------------------------------------------------------------------------------##
 
-
-
-#-----------------------------------------------------------------#
-
-## Create GUI with title
-
+## Create GUI with Title
 
 mygui = Tk()
 mygui.title("Spherical Manipulator Calculator")
 mygui.resizable(False,False) 
-mygui.geometry("800x600") ## (width, height)
+mygui.geometry("800x600")
 mygui.configure(bg ="#424949")
 
 titlefont = tkFont.Font(family = "Ubuntu", weight="bold", size=13)
 
+##----------------------------------------------------------------------------------------------------------------------------------##
 
-## reset functions
+## Reset Function
+
 def reset():
     a1_E.delete(0, END)
     a2_E.delete(0, END)
@@ -42,39 +40,43 @@ def reset():
     Z_E.delete(0, END)
 
 
-##-----------------------------------------------------------------##
+##----------------------------------------------------------------------------------------------------------------------------------##
+
+## Warning Function
 
 def warning(): 
     messagebox.showinfo("Value Undefined","Unable to compute.")
     condition = True
 
-##-----------------------------------------------------------------##
+##----------------------------------------------------------------------------------------------------------------------------------##
 
 ## 1 FORWARD KINEMATICS BUTTON
 
 def f_k():
 
     # link lengths in mm
-    a1 = float(a1_E.get())
-    a2 = float(a2_E.get())
-    a3 = float(a3_E.get())
+    a1 = float(a1_E.get()) ## 40    
+    a2 = float(a2_E.get()) ## 10
+    a3 = float(a3_E.get()) ## 15
 
-    # joint variables: is mm if f, is degrees if theta
-    T1 = float(T1_E.get()) #20 mm
-    T2 = float(T2_E.get()) #30 deg
-    d3 = float(d3_E.get()) #-90 deg
+    # joint variables
+    T1 = float(T1_E.get()) #-75 mm
+    T2 = float(T2_E.get()) #45 deg
+    d3 = float(d3_E.get()) #12.5 deg
 
     # degree to radian
     T1 = (T1/180.0)*np.pi
     T2 = (T2/180.0)*np.pi
 
     # Parametric Table (theta, alpha, r, d)
+
     PT = [[T1,(90.0/180.0)*np.pi,0,a1],
           [T2 + (90.0/180.0)*np.pi,(90.0/180.0)*np.pi,0,0],
           [0,0,0,a2 + a3 + d3]]
 
 
-    # HTM formula
+    # HTM Formula
+
     i = 0
     H0_1 = [[np.cos(PT[i][0]),-np.sin(PT[i][0])*np.cos(PT[i][1]),np.sin(PT[i][0])*np.sin(PT[i][1]),PT[i][2]*np.cos(PT[i][0])],
         [np.sin(PT[i][0]),np.cos(PT[i][0])*np.cos(PT[i][1]),-np.cos(PT[i][0])*np.sin(PT[i][1]),PT[i][2]*np.sin(PT[i][0])],
@@ -115,6 +117,235 @@ def f_k():
     Z_E.insert(0,np.around(Z0_3,3))
 
 
+## Jacobian   Part
+
+    ##  Jacobian Window
+
+    Velo_calc = Toplevel()
+    Velo_calc.title("Velocoty Calculator")
+    Velo_calc.geometry("250x359")
+    Velo_calc.resizable(False,False)
+    Velo_calc.configure(bg ="#424949")
+
+    J_sw = LabelFrame(Velo_calc,bg="white", padx=5, pady= 5, border=13, borderwidth=10, relief="groove", labelanchor="n", highlightbackground="black", highlightcolor="blue")
+    J_sw.place(x = 7.5 , y = 10)
+
+
+    ## Jacobian Matrix
+
+    ## Linear / Prismaic Vectors
+
+    Z_1 = [[0],[0],[1]]  # [0,0,1] vector
+
+    #  1. row 1 - 3 column 1
+
+    J1a = [[1,0,0],
+           [0,1,0],
+           [0,0,1]]
+    
+    J1a = np.dot(J1a,Z_1)
+
+    J1b_1 = H0_3[0:3 , 3:]
+    J1b_1 = np.array(J1b_1)
+
+    J1b_2 = [[0],
+             [0],
+             [0]]
+    J1b_2 = np.array(J1b_2)
+
+    J1b = J1b_1 - J1b_2
+
+    J1 = [[J1a[1,0]*J1b[2,0]-J1a[2,0]*J1b[1,0]],
+          [J1a[2,0]*J1b[0,0]-J1a[0,0]*J1b[2,0]],
+          [J1a[0,0]*J1b[1,0]-J1a[1,0]*J1b[0,0]]]
+
+    J1 = np.array(J1)
+
+    ## 2. row 1 - 3 column 2
+
+    J2a = H0_1[0:3,0:3]
+    J2a = np.dot(J2a,Z_1)
+
+    J2b_1 = H0_3[0:3 , 3:]
+    J2b_1 = np.array(J2b_1)
+
+    J2b_2 = H0_1[0:3 , 3:]
+    J2b_2 = np.array(J2b_2)
+
+    J2b = J2b_1 - J2b_2
+
+    J2 = [[J2a[1,0]*J2b[2,0]-J2a[2,0]*J2b[1,0]],
+          [J2a[2,0]*J2b[0,0]-J2a[0,0]*J2b[2,0]],
+          [J2a[0,0]*J2b[1,0]-J2a[1,0]*J2b[0,0]]]
+    J2 = np.array(J2)
+
+    # 3. row 1 - 3 column 3
+
+    J3 = H0_2[0:3,0:3]
+    J3 = np.dot(J3,Z_1)
+
+
+
+     ## Rotation / Orientation Vectors
+
+    # 4. row 4-6 column 1
+
+    J4 = J1a
+    J4 = np.array(J4)
+
+    #  5. row 4-6 column 2
+
+    J5 = J2a
+    J5 = np.array(J5)
+
+    # 6. row 4-6 column 3
+
+
+    J6 = [[0],[0],[0]]
+    J6 = np.array(J6)
+
+
+    ## Jacobian Matrix
+
+    JM1 = np.concatenate((J1,J2,J3),1)
+    JM2 = np.concatenate((J4,J5,J6),1)
+
+    J = np.concatenate((JM1,JM2),0)
+    J = np.around(J,3)
+    print(J)
+
+
+    ## Update Button Function
+
+    def update_velo():
+        
+        T1p = T1_slider.get()
+        T2p = T2_slider.get()
+        d3p = d3_slider.get()
+
+        q = np.array([[T1p],
+                     [T2p],
+                     [d3p]])
+        E = np.dot(J,q)
+        print(q)
+
+        xp_e = E[0,0]
+        x_entry.delete(0,END)
+        x_entry.insert(0,str(xp_e))
+
+        yp_e = E[1,0]
+        y_entry.delete(0,END)
+        y_entry.insert(0,str(yp_e))
+
+        zp_e = E[2,0]
+        z_entry.delete(0,END)
+        z_entry.insert(0,str(zp_e))
+
+
+        ωx_e = E[3,0]
+        ωx_entry.delete(0,END)
+        ωx_entry.insert(0,str(ωx_e))
+
+        ωy_e = E[4,0]
+        ωy_entry.delete(0,END)
+        ωy_entry.insert(0,str(ωy_e))
+
+        ωz_e = E[5,0]
+        ωz_entry.delete(0,END)
+        ωz_entry.insert(0,str(ωz_e))
+
+
+    ## Jaacobian Sliders
+
+    T1_velo = Label(J_sw, text = ('θ1 = '), font = (5))
+    T1_slider = Scale(J_sw, from_=0, to_=3.142, orient=HORIZONTAL, length=100)
+    T1_unit = Label(J_sw, text=('rad/s'), font =(5))
+
+    T2_velo = Label(J_sw, text = ('θ2 = '), font = (5))
+    T2_slider = Scale(J_sw, from_=0, to_=3.142, orient=HORIZONTAL, length=100, sliderlength=10)
+    T2_unit = Label(J_sw, text=('rad/s'), font =(5))
+
+    d3_velo = Label(J_sw, text = ('d3 = '), font = (5))
+    d3_slider = Scale(J_sw, from_=0, to_=25, orient=HORIZONTAL, length=100, sliderlength=10)
+    d3_unit = Label(J_sw, text=('cm/s'), font =(5))
+
+    T1_velo.grid(row=0, column=0)
+    T1_slider.grid(row=0, column=1)
+    T1_unit.grid(row=0, column=2)
+
+
+    T2_velo.grid(row=1, column=0)
+    T2_slider.grid(row=1, column=1)
+    T2_unit.grid(row=1, column=2)
+
+
+    d3_velo.grid(row=2, column=0)
+    d3_slider.grid(row=2, column=1)
+    d3_unit.grid(row=2, column=2)
+
+
+    ## Jacobian Entries And Labels
+
+    x_velo = Label(J_sw, text=("x* ="), font= (5))
+    x_entry = Entry(J_sw, width=10, font= (10))
+    x_unit = Label(J_sw, text=("cm/s"), font= (5))
+
+    y_velo = Label(J_sw, text=("y* ="), font= (5))
+    y_entry = Entry(J_sw, width=10, font= (10))
+    y_unit = Label(J_sw, text=("cm/s"), font= (5))
+
+    z_velo = Label(J_sw, text=("z* ="), font= (5))
+    z_entry = Entry(J_sw, width=10, font= (10))
+    z_unit = Label(J_sw, text=("cm/s"), font= (5))
+
+    ωx_velo = Label(J_sw, text=('ωx = '), font = 5)
+    ωx_entry = Entry(J_sw, width=10, font= (10))
+    ωx_unit = Label(J_sw, text=('rad/s '), font = 5)
+
+    ωy_velo = Label(J_sw, text=('ωz = '), font = 5)
+    ωy_entry = Entry(J_sw, width=10, font= (10))
+    ωy_unit = Label(J_sw, text=('rad/s '), font = 5)
+
+
+    ωz_velo = Label(J_sw, text=('ωz = '), font = 5)
+    ωz_entry = Entry(J_sw, width=10, font= (10))
+    ωz_unit = Label(J_sw, text=('rad/s '), font = 5)
+
+
+    x_velo.grid(row=3, column=0)
+    x_entry.grid(row=3, column=1)
+    x_unit.grid(row=3, column=2)
+
+    y_velo.grid(row=4, column=0)
+    y_entry.grid(row=4, column=1)
+    y_unit.grid(row=4, column=2)
+
+    z_velo.grid(row=5, column=0)
+    z_entry.grid(row=5, column=1)
+    z_unit.grid(row=5, column=2)
+
+    ωx_velo.grid(row=6, column=0)
+    ωx_entry.grid(row=6, column=1)
+    ωx_unit.grid(row=6, column=2)
+
+    ωy_velo.grid(row=7, column=0)
+    ωy_entry.grid(row=7, column=1)
+    ωy_unit.grid(row=7, column=2)
+
+
+    ωz_velo.grid(row=8, column=0)
+    ωz_entry.grid(row=8, column=1)
+    ωz_unit.grid(row=8, column=2)
+
+    ## Update button
+
+    update_but = Button(J_sw, text=('Update'), bg ='green', fg = 'white', command=update_velo, padx= 30)
+    update_but.grid(row = 9, columnspan=2)
+
+
+
+## Model Part (FK)
+
 ## CREATE LINKS
 ## Robot_variable = DHRobot([RevoluteDH(d,r,alpha,offset=theta,qlim)])
 ## Robot_variable = DHRobot([PrismaticDH(d=0,r,alpha,offset=d,qlim)])
@@ -130,12 +361,12 @@ def f_k():
 
     print(Spherical)
 
-    Spherical.plot(q1, limits=[-1,1,-1,1,0,1],block=True,)
+    Spherical.plot(q1, limits=[-.7,.7,-.7,.7,0,.7],block=True,)
 
 
 
 
-##-----------------------------------------------------------------##
+##----------------------------------------------------------------------------------------------------------------------------------##
 
 ## 2 INVERSE KINEMATICS BUTTON
     
@@ -170,7 +401,7 @@ def i_k():
     d3 = (np.sqrt(r1**2 + r2**2) - a2 - a3)
     
    
-        ## convert radian to degrees
+    ## Conversion of Radian To Degrees
     TH1 = T1*(180/np.pi)
     TH2 = T2*(180/np.pi)
 
@@ -186,6 +417,7 @@ def i_k():
     d3_E.insert(0,np.around(d3,3))
 
 
+## Model Part (IK)
 
 ## CREATE LINKS
 ## Robot_variable = DHRobot([RevoluteDH(d,r,alpha,offset=theta,qlim)])
@@ -203,19 +435,15 @@ def i_k():
 
     print(Spherical)
 
-    Spherical.plot(q1, limits=[-1,1,-1,1,0,1],block=True,)
-
+    Spherical.plot(q1, limits=[-.7,.7,-.7,.7,0,.7],block=True,)
 
 
 ##---------------------------------------------------------------------------------------------------------------------------------------##
 
 
-
-
 ## MAIN GRAPHICAL USER INTERFACE (GUI)
 
-ttlfont1 = tkFont.Font(family="Stencil STD", weight="bold", size=28)
-ttlfont2 = tkFont.Font(family="Curlz MT", weight="bold", size=19)
+## GUI Title
 
 ttl1 = Label(mygui, text ="Spherical", font="Terminal 26 bold", bg =mygui.cget("bg"), fg = "#FF2D00")
 ttl2 = Label(mygui, text ="Manipulator", font="Terminal 26 bold", bg =mygui.cget("bg"), fg = "#C5A9A3")
@@ -234,15 +462,16 @@ div.pack(anchor="n", pady = 15)
 
 div.create_line(3,0,3, 120,  width=7, fill="#101010")
 
+##----------------------------------------------------------------------------------------------------------------------------------##
 
 
-
-## Links And Joint Variable Label
+## Links And Joint Variable Label Frame
     
 FI = LabelFrame(mygui,text = "Link frames and Joint Variables", font=titlefont ,bg="white", padx=5, pady= 5, border=13, borderwidth=12, relief="groove", labelanchor="n")
 FI.place(x = 30, y = 150)
 
-#link lenghts and joint variable
+## Link Lenghts And Joint Variable
+
 a1 = Label(FI,text=("a1 = "), font=(10),bg="white", padx=5 ,pady=3)## fg = "--" for text color
 a1_E = Entry(FI, width=5, font=10)
 cm1 = Label(FI,text=("cm"), font=(10),bg="white", padx=5, pady=3)
@@ -294,7 +523,7 @@ d3.grid(row=2,column=3)
 d3_E.grid(row=2,column=4)
 cm5.grid(row=2,column=5)
 
-
+##----------------------------------------------------------------------------------------------------------------------------------##
 
 ## Position Vector Label Frame
 
@@ -328,6 +557,7 @@ Z.grid(row=2,column=0, padx=3, ipadx=5, pady = 3)
 Z_E.grid(row=2,column=1,padx=3, ipadx=5, pady = 3)
 cm8.grid(row=2,column=2, padx=3, ipadx=5, pady = 3)
 
+##----------------------------------------------------------------------------------------------------------------------------------##
 
 ## Button Label Frame(forward/reset/inverse)
 
@@ -344,6 +574,8 @@ IK = Button(BF, text = "Inverse ↑", font = 10, bg = "white" , command=i_k, pad
 FK.pack(side = LEFT , padx=3, pady=3)
 RST.pack(side=LEFT, padx=3, pady=3)
 IK.pack(side=LEFT , padx=3, pady=3)
+
+##----------------------------------------------------------------------------------------------------------------------------------##
 
 ## Image Canvas
 
@@ -363,6 +595,4 @@ img_2.pack(fill="both")
 
 
 
-mygui.mainloop() ## always at last
-
-
+mygui.mainloop()
